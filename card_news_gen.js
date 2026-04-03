@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardBg = document.getElementById('card-bg');
     const uploadZone = document.getElementById('upload-zone');
     const fileNameDisplay = document.getElementById('file-name-display');
-    const analyzeBtn = document.getElementById('analyze-trigger-btn');
+    const analyzeButtons = document.querySelectorAll('.analyze-btn');
     const genBtn = document.getElementById('gen-card-btn');
     const downloadBtn = document.getElementById('download-card');
     
@@ -53,24 +53,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. AI Analysis Logic (Modal Sequence)
-    analyzeBtn.addEventListener('click', () => {
-        modal.style.display = 'flex';
-        fillBar.style.width = '0%';
-        percentText.innerText = '0%';
-        statusIcon.innerText = '●';
-        statusIcon.style.color = '#ff934b';
+    analyzeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            fillBar.style.width = '0%';
+            percentText.innerText = '0%';
+            statusIcon.innerText = '●';
+            statusIcon.style.color = '#ff934b';
 
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.random() * 8;
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(interval);
-                finishAnalysis();
-            }
-            fillBar.style.width = `${progress}%`;
-            percentText.innerText = `${Math.floor(progress)}%`;
-        }, 150);
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 8;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    finishAnalysis();
+                }
+                fillBar.style.width = `${progress}%`;
+                percentText.innerText = `${Math.floor(progress)}%`;
+            }, 150);
+        });
     });
 
     function finishAnalysis() {
