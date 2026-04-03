@@ -124,10 +124,15 @@
       <div class="ai-card" style="border: 2px solid var(--primary);">
         <h4 style="color: var(--primary);">카드뉴스 자동 생성</h4>
         <div class="card-preview" id="card-news-result">
-          <button class="download-btn" id="download-card" title="이미지 다운로드">📥</button>
-          <img id="card-bg" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600">
-          <div class="card-overlay" id="card-overlay">
-            <div style="font-size: 18px; font-weight: 900;" id="preview-text">청년 지원 정책 안내</div>
+          <button class="download-btn" id="download-card" title="이미지 다운로드" style="display: none;">📥</button>
+          <div id="card-placeholder" style="position: absolute; inset: 0; background: #eaedf2; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #94a3b8; z-index: 5;">
+            <div style="font-size: 40px; margin-bottom: 10px;">🖼️</div>
+            <div style="font-size: 13px; font-weight: 700;">생성된 이미지가 없습니다</div>
+            <div style="font-size: 11px; margin-top: 4px;">상단 분석 후 생성을 눌러주세요</div>
+          </div>
+          <img id="card-bg" style="display: none;">
+          <div class="card-overlay" id="card-overlay" style="display: none;">
+            <div style="font-size: 18px; font-weight: 900; color: #fff; text-align: center; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.8);" id="preview-text"></div>
           </div>
         </div>
         <button class="btn btn-primary" id="gen-card-btn" style="width: 100%; margin-top: 15px; justify-content: center;">🎨 카드뉴스 생성 하기</button>

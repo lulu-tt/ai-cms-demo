@@ -94,13 +94,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Card News Generation
     genBtn.addEventListener('click', () => {
+        if (!titleInput.value) {
+            alert("먼저 문서 분석을 진행해 주세요!");
+            return;
+        }
+
         genBtn.innerHTML = `<span>⏳</span> 생성 중...`;
         setTimeout(() => {
             const themes = [
                 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600',
-                'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=600'
+                'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=600',
+                'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600'
             ];
+            
+            // UI Update
+            document.getElementById('card-placeholder').style.display = 'none';
             cardBg.src = themes[Math.floor(Math.random() * themes.length)];
+            cardBg.style.display = 'block';
+            
+            const overlay = document.getElementById('card-overlay');
+            overlay.style.display = 'flex';
+            overlay.style.background = 'rgba(0,0,0,0.3)'; // Add slight dimming for text readability
+            
+            previewText.innerText = titleInput.value; // Ensure text from the analyzer is used
+            downloadBtn.style.display = 'flex';
+
             genBtn.innerText = "🎨 카드뉴스 생성 완료";
             setTimeout(() => genBtn.innerText = "🎨 카드뉴스 생성 하기", 2000);
         }, 1500);
